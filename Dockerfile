@@ -1,23 +1,24 @@
-FROM alpine:3.8
-MAINTAINER MindDoc <development@minddoc.com>
+# ------------------------------------------------------
+#                       Dockerfile
+# ------------------------------------------------------
+# image:    flutter
+# name:     minddocdev/flutter
+# repo:     https://github.com/minddocdev/flutter
+# Requires: ubuntu:latest
+# authors:  development@minddoc.com
+# ------------------------------------------------------
+FROM ubuntu:latest
 
-LABEL org.label-schema.vendor="MindDoc" \
-      org.label-schema.name="Alpine linux image for Flutter test projects" \
-      org.label-schema.license="MIT" \
-      org.label-schema.vcs-type="git" \
-      org.label-schema.vcs-url="https://github.com/minddocdev/flutter-lcov"
-
-ARG branch=stable
+LABEL maintainer="development@minddoc.com"
 
 WORKDIR /
 
-RUN apk add --update --no-cache \
- build-base \
- git \
- lcov \
- curl \
- libglu1
-RUN git clone --branch $branch --depth=1 https://github.com/flutter/flutter.git
-RUN /flutter/bin/flutter doctor
-    
+RUN apt-get update && \
+    apt-get install -y lcov git-core curl unzip libglu1 && \
+    git clone --branch v1.5.1 --depth=1 https://github.com/flutter/flutter.git && \
+    /flutter/bin/flutter doctor && \
+    apt-get remove -y curl unzip && \
+    apt autoremove -y && \
+    rm -rf /var/lib/apt/lists/*
+
 ENV PATH $PATH:/flutter/bin/cache/dart-sdk/bin:/flutter/bin
