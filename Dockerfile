@@ -16,8 +16,7 @@ ARG VERSION=v1.5.4-hotfix.2
 WORKDIR /
 
 RUN apt-get update && \
-    apt-get install -y lcov git-core curl unzip libglu1 lib32stdc++6 && 
-    apt-get clean \
+    apt-get install -y lcov git-core curl unzip libglu1 lib32stdc++6 && \
     git clone --branch $VERSION --depth=1 https://github.com/flutter/flutter.git && \
     /flutter/bin/flutter doctor && \
     apt-get remove -y curl unzip && \
