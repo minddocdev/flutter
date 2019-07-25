@@ -7,7 +7,7 @@
 # Requires: ubuntu:latest
 # authors:  development@minddoc.com
 # ------------------------------------------------------
-FROM ubuntu:latest
+FROM ubuntu:18.04
 
 LABEL maintainer="development@minddoc.com"
 
