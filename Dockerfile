@@ -11,7 +11,7 @@ FROM ubuntu:18.04
 
 LABEL maintainer="development@minddoc.com"
 
-ARG VERSION=v1.9.1+hotfix.2
+ARG VERSION=v1.9.1+hotfix.5
 
 ENV FLUTTER_PATH=/flutter/bin
 
